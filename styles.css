@@ -208,7 +208,7 @@ header {
   top: 150px;
  }
  .centered-container{
-  font-size: ;
+  font-size: 2em;
  }
 }
 
@@ -319,12 +319,6 @@ img {
   position: absolute;
   top: 400px;
   right: 450px;
-}
-
-#image5 {
-  position: absolute;
-  top: 100px;
-  right: 650px;
 }
 
 #image6 {
