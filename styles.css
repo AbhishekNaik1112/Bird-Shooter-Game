@@ -9,7 +9,7 @@
 }
 
 body {
-  background: url(assets/background-21717_1280.jpg) no-repeat center/cover;
+  background: url(assets/white-cloud-blue-sky.jpg) no-repeat center/cover;
   overflow: hidden;
   cursor: crosshair;
   display: flex;
@@ -124,15 +124,16 @@ header {
 
 /* Game styles */
 #collisionCanvas {
-  opacity: 0;
+  opacity: 1;
 }
 
 #canvas1 {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   height: 100%;
   width: 100%;
+  border: 1px solid rgb(50, 8, 8);
 }
 
 /* Game Over styles */
@@ -227,7 +228,6 @@ header {
 #input-container input {
   width: 100%;
   padding: 12px;
-  /* Increase the padding to make the input boxes taller */
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -245,6 +245,11 @@ header {
 #submit-button:hover {
   background-color: #0056b3;
 }
+
+.no-underline {
+  text-decoration: none;
+}
+
 
 /* Media Queries for Responsiveness */
 @media (max-width: 425px) {

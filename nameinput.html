@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,24 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image" href="assets/icon image.png">
 </head>
+
 <body>
+    <a href="index.html" class="no-underline"><div class="back">BACK</div></a>
     <div id="input-container">
-        <label for="username">Username:</label>
-        <input type="text" id="username" placeholder="Enter your username" required><br>
-
-        <label for="nickname">Nickname:</label>
-        <input type="text" id="nickname" placeholder="Enter your nickname" required><br>
-
-        <button id="submit-button">Submit</button>
+        <form id="name-form" action="game.html" method="GET">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required><br>
+        
+            <label for="nickname">Nickname:</label>
+            <input type="text" id="nickname" name="nickname" placeholder="Enter your nickname" required><br>
+        
+            <button id="submit-button" type="submit">Submit</button>
+        </form>
+        
     </div>
-    
+
+    <script src="script.js"></script>
+  
 </body>
+
 </html>

@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(assets/white-cloud-blue-sky.jpg) no-repeat center/cover;
+  overflow: hidden;
+  cursor: crosshair;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+  margin: 0;
+  position: relative;
+}
