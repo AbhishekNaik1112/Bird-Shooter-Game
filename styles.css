@@ -21,6 +21,7 @@ body {
   margin: 0;
   position: relative;
 }
+
 /* Styles for Index */
 header {
   font-family: "Bungee Spice", sans-serif;
@@ -29,6 +30,7 @@ header {
   position: relative;
   top: 3em;
 }
+
 /* font-family: 'Concert One', sans-serif; */
 .centered-container {
   display: flex;
@@ -46,7 +48,7 @@ header {
   margin: 10px;
   padding: 10px 20px;
   font-size: 25px;
-  background: rgba(52, 152, 219,0.5);
+  background: rgba(52, 152, 219, 0.5);
   color: #000;
   font-weight: bold;
   border: none;
@@ -201,15 +203,59 @@ header {
   background: #1f77c9;
 }
 
+/* Name Input Styles */
+#input-container {
+  font-family: 'Concert One', sans-serif;
+  font-size: 3em;
+  position: absolute;
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: rgba(240, 240, 240, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+  top: 150px;
+}
+
+#input-container label {
+  display: block;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+#input-container input {
+  width: 100%;
+  padding: 12px;
+  /* Increase the padding to make the input boxes taller */
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#submit-button {
+  background-color: #0074d9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#submit-button:hover {
+  background-color: #0056b3;
+}
+
 /* Media Queries for Responsiveness */
 @media (max-width: 425px) {
- header{
-  font-size: 2.5em;
-  top: 150px;
- }
- .centered-container{
-  font-size: 2em;
- }
+  header {
+    font-size: 2.5em;
+    top: 150px;
+  }
+
+  .centered-container {
+    font-size: 2em;
+  }
 }
 
 
