@@ -14,7 +14,7 @@ window.onload = function () {
 let timeToNextRaven = 0;
 let ravenInterval = 1000;
 let lastTime = 0;
-let score = 1;
+let score = 0;
 let gameOver = false;
 let lives = 5;
 
@@ -216,15 +216,15 @@ function animate(timestamp) {
   lastTime = timestamp;
   timeToNextRaven += deltatime;
 
-  if (score % 20 === 0) {
-    if (lives >= 5) {
-      score += 10;
-      
+  if (score > 0) {
+    if (score % 40 === 0) {
+      if (lives >= 5) {
+        score += 20;
+      }
     }
   }
-  if (score % 40 === 0) {
-    lives++;
-  }
+ 
+ 
 
   if (timeToNextRaven > ravenInterval) {
     ravens.push(new Raven());
@@ -249,7 +249,6 @@ function animate(timestamp) {
 animate(0);
 
 const nameForm = document.getElementById("name-form");
-
 nameForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -259,15 +258,11 @@ nameForm.addEventListener("submit", function (event) {
   const username = usernameInput.value;
   const nickname = nicknameInput.value;
 
-  sessionStorage.setItem("username", username);
-  sessionStorage.setItem("nickname", nickname);
-
-  sessionStorage.setItem("score", 0);
-
+  localStorage.setItem("username", username);
+  localStorage.setItem("nickname", nickname);
   window.location.href =
     "game.html?username=" +
     encodeURIComponent(username) +
     "&nickname=" +
     encodeURIComponent(nickname);
 });
-
