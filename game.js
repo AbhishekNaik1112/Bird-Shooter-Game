@@ -12,9 +12,9 @@ window.onload = function () {
 };
 
 let timeToNextRaven = 0;
-let ravenInterval = 5000;
+let ravenInterval = 1000;
 let lastTime = 0;
-let score = 0;
+let score = 1;
 let gameOver = false;
 let lives = 5;
 
@@ -128,7 +128,17 @@ class Explosion {
   }
 
   draw() {
-    ctx.drawImage( this.image,this.frame * this.spriteWidth,0,this.spriteWidth,this.spriteHeight,this.x,this.y - this.size * 0.25,this.size,this.size);
+    ctx.drawImage(
+      this.image,
+      this.frame * this.spriteWidth,
+      0,
+      this.spriteWidth,
+      this.spriteHeight,
+      this.x,
+      this.y - this.size * 0.25,
+      this.size,
+      this.size
+    );
   }
 }
 // continue from here
@@ -151,13 +161,13 @@ class Particle {
     this.radius += 0.8;
     if (this.radius > this.maxRadius - 5) this.markedForDeletion = true;
   }
-//   update() {
-//     this.x += this.speedX;
-//     this.radius += 0.8;
-//     if (this.radius > this.maxRadius - 5) {
-//         this.markedForDeletion = true;
-//     }
-// }
+  //   update() {
+  //     this.x += this.speedX;
+  //     this.radius += 0.8;
+  //     if (this.radius > this.maxRadius - 5) {
+  //         this.markedForDeletion = true;
+  //     }
+  // }
 
   draw() {
     ctx.save();
@@ -171,9 +181,15 @@ class Particle {
 }
 
 function drawScore() {
-  ctx.fillStyle = "white";
-  ctx.font = "50px Impact";
+  ctx.fillStyle = "black";
+  ctx.font = "50px Concert One";
   ctx.fillText("Score: " + score, 50, 75);
+}
+
+function drawLives() {
+  ctx.fillStyle = "black";
+  ctx.font = "50px Concert One";
+  ctx.fillText("Lives: " + lives, 1240, 75);
 }
 
 window.addEventListener("click", function (e) {
@@ -199,6 +215,17 @@ function animate(timestamp) {
   let deltatime = timestamp - lastTime;
   lastTime = timestamp;
   timeToNextRaven += deltatime;
+
+  if (score % 20 === 0) {
+    if (lives >= 5) {
+      score += 10;
+      
+    }
+  }
+  if (score % 40 === 0) {
+    lives++;
+  }
+
   if (timeToNextRaven > ravenInterval) {
     ravens.push(new Raven());
     timeToNextRaven = 0;
@@ -207,6 +234,7 @@ function animate(timestamp) {
     });
   }
   drawScore();
+  drawLives();
   [...particles, ...ravens, ...explosions].forEach((object) =>
     object.update(deltatime)
   );
@@ -220,4 +248,26 @@ function animate(timestamp) {
 }
 animate(0);
 
+const nameForm = document.getElementById("name-form");
+
+nameForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const usernameInput = document.getElementById("username");
+  const nicknameInput = document.getElementById("nickname");
+
+  const username = usernameInput.value;
+  const nickname = nicknameInput.value;
+
+  sessionStorage.setItem("username", username);
+  sessionStorage.setItem("nickname", nickname);
+
+  sessionStorage.setItem("score", 0);
+
+  window.location.href =
+    "game.html?username=" +
+    encodeURIComponent(username) +
+    "&nickname=" +
+    encodeURIComponent(nickname);
+});
 
