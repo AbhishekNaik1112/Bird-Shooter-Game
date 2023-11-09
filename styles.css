@@ -124,7 +124,7 @@ header {
 
 /* Game styles */
 #collisionCanvas {
-  opacity: 1;
+  opacity: 0;
 }
 
 #canvas1 {
