@@ -170,7 +170,7 @@ class Particle {
   }
 
   update() {
-    this.speedX += this.speedX;
+    this.X += this.speedX;
     this.radius += 0.8;
     if (this.radius > this.maxRadius - 5) this.markedForDeletion = true; //Update logic for Particle objects
   }

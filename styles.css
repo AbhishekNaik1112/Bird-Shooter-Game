@@ -124,7 +124,7 @@ header {
 
 /* MAIN GAME SCREEN STYLES  */
 #collisionCanvas {
-  opacity: 0;
+  opacity: 1;
 }
 
 #canvas1 {
@@ -255,174 +255,20 @@ header {
 
 /* MEDIA QUERIES FOR RESPONSIVENESS */
 @media (max-width: 425px) {
+  header {
+    font-size: 3.5em;
+    top: 3.5em;
+  }
+
+  .info,
+  .instruction {
+    font-size: 0.9rem;
+    position: absolute;
+    left: 0.1em;
+  }
+  #canvas1 {
+    font-size: 1.5em;
+  }
+  
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ..........__________.......... */
-/* img {
-  height: 100px;
-}
-
-
-.score {
-  position: absolute;
-  top: 15px;
-  left: 10px;
-  font-size: 1.5em;
-}
-
-.lives {
-  position: absolute;
-  top: 15px;
-  right: 10px;
-  font-size: 1.5em;
-}
-
-.body-text {
-  max-width: 600px;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-.info,
-.instruction {
-  background-color: rgba(240, 240, 240, 0.2);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
-  font-size: 25px;
-  line-height: 1.5;
-  text-align: center;
-  max-width: 800px;
-  position: absolute;
-  left: 450px;
-  top: 120px;
-}
-
-.info:hover,
-.instruction:hover {
-  transform: scale(1.02);
-  transition: transform 0.3s ease;
-}
-
-.info a,
-.instruction a {
-  color: #0078d4;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.info a:hover,
-.instruction a:hover {
-  color: #0056b3;
-}
-
-
-img {
-  height: 100px;
-  width: 100px;
-}
-
-#image1 {
-  position: absolute;
-  top: 90px;
-  right: 100px;
-}
-
-#image2 {
-  position: absolute;
-  top: 230px;
-  right: 150px;
-}
-
-#image3 {
-  position: absolute;
-  top: 200px;
-  right: 400px;
-}
-
-#image4 {
-  position: absolute;
-  top: 400px;
-  right: 450px;
-}
-
-#image6 {
-  position: absolute;
-  top: 80px;
-  left: 100px;
-}
-
-#image7 {
-  position: absolute;
-  top: 120px;
-  left: 430px;
-}
-
-#image8 {
-  position: absolute;
-  top: 280px;
-  left: 600px;
-}
-
-#image9 {
-  position: absolute;
-  top: 250px;
-  left: 300px;
-}
-
-#image10 {
-  position: absolute;
-  top: 350px;
-  left: 450px;
-}
-
-#collisionCanvas {
-  opacity: 0;
-}
-
-#canvas1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-} */
-
-
-
-/* .score {
-  position: absolute;
-  top: 15px;
-  left: 10px;
-  font-size: 1.5em;
-  color: white;
-}
-
-.lives {
-  position: absolute;
-  top: 15px;
-  right: 10px;
-  font-size: 1.5em;
-  color: white;
-} */

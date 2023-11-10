@@ -1,3 +1,4 @@
+
 // REDIRECT TO "NAMEINPUT.HTML" WHEN THE ELEMENT WITH ID "PLAY" IS CLICKED
 document.getElementById("Play").addEventListener("click", function () {
   window.location.href = "nameinput.html";
