@@ -2,10 +2,10 @@
 
 A simple point and shoot bird shooting game made on HTML,CSS and Vanilla JavaScript
 
-Has features like 
-Mobile responsive(425px).
-Using Session Storage to save Username,Nickname,Score and Phrases.
-Has BGM and onclick SFX
+Has features like<br><br>
+Mobile semi-responsive(425px).<br><br>
+Using Session Storage to save Username,Nickname,Score and Phrases.<br><br>
+Has BGM and onclick SFX<br><br>
 
 Repo hosted on 
 https://abhisheknaik1112.github.io/FEWD-CA-Game-Development-Week/

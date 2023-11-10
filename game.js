@@ -26,7 +26,7 @@ let ravenInterval = 950;
 let lastTime = 0;
 let score = 0;
 let gameOver = false;
-let lives = 5;
+let lives = 5000;
 
 // ARRAY TO STORE RAVEN OBJECTS
 let ravens = [];
