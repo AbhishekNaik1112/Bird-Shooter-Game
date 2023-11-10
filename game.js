@@ -16,13 +16,12 @@ const bgm = new Audio("assets/dancehall-124368.mp3");
 bgm.play();
 bgm.loop = true;
 
-
 let timeToNextRaven = 0;
 let ravenInterval = 500;
 let lastTime = 0;
 let score = 0;
 let gameOver = false;
-let lives = 5000;
+let lives = 5;
 
 let ravens = [];
 
@@ -79,11 +78,11 @@ class Raven {
       }
     }
     if (this.x < 0 - this.width) {
-        lives--;
-        if (lives == 0) {
-          gameOver = true;  
-          window.location.href = "gameover.html";
-        }
+      lives--;
+      if (lives == 0) {
+        gameOver = true;
+        window.location.href = "gameover.html";
+      }
     }
   }
 
@@ -194,6 +193,7 @@ function drawLives() {
 window.addEventListener("click", function (e) {
   const detectPixelColor = collisionCtx.getImageData(e.x, e.y, 1, 1);
   const pc = detectPixelColor.data;
+
   ravens.forEach((object) => {
     if (
       object.randomColors[0] === pc[0] &&
@@ -203,20 +203,27 @@ window.addEventListener("click", function (e) {
       object.markedForDeletion = true;
       score++;
       explosions.push(new Explosion(object.x, object.y, object.width));
+
+      sessionStorage.setItem("score", score);
     }
   });
 });
 
 function getScoreMessage(score) {
+  let message;
+
   if (score >= 0 && score <= 10) {
-    return "Nice start!";
+    message = "Nice start!";
   } else if (score > 10 && score <= 20) {
-    return "Getting better!";
+    message = "Getting better!";
   } else if (score > 20 && score <= 30) {
-    return "Impressive!";
+    message = "Impressive!";
   } else {
-    return "You're on fire!";
+    message = "You're on fire!";
   }
+  sessionStorage.setItem("scoreMessage", message);
+
+  return message;
 }
 
 function animate(timestamp) {
@@ -269,42 +276,3 @@ function stopGame() {
 }
 
 animate(0);
-
-const restartButton = document.querySelector(".restart");
-restartButton.addEventListener("click", function () {
-  sessionStorage.clear();
-  window.location.href = "nameinput.html";
-});
-
-const mainMenuButton = document.querySelector(".main");
-mainMenuButton.addEventListener("click", function () {
-  sessionStorage.clear();
-  window.location.href = "index.html";
-});
-
-
-
-// function drawGameOver() {
-//   const overlay = document.querySelector(".overlay");
-//   if (!overlay) {
-//     console.error("Overlay not found");
-//     return;
-//   }
-//   overlay.style.display = "flex";
-
-//   const nameElement = document.querySelector(".name");
-//   const nnameElement = document.querySelector(".nname");
-//   const yourscoreElement = document.querySelector(".yourscore");
-
-//   if (!nameElement || !nnameElement || !yourscoreElement) {
-//     console.error("One or more elements not found");
-//     return;
-//   }
-
-//   const username = sessionStorage.getItem("username");
-//   const nickname = sessionStorage.getItem("nickname");
-
-//   nameElement.textContent = "Name: " + username;
-//   nnameElement.textContent = "Nickname: " + nickname;
-//   yourscoreElement.textContent = "Your Score: " + score;
-// }
