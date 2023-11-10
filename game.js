@@ -17,7 +17,7 @@ bgm.play();
 bgm.loop = true;
 
 let timeToNextRaven = 0;
-let ravenInterval = 500;
+let ravenInterval = 800;
 let lastTime = 0;
 let score = 0;
 let gameOver = false;
@@ -211,7 +211,7 @@ window.addEventListener("click", function (e) {
 
 function getScoreMessage(score) {
   let message;
-
+  sessionStorage.setItem("scoreMessage", message);
   if (score >= 0 && score <= 10) {
     message = "Nice start!";
   } else if (score > 10 && score <= 20) {
@@ -221,7 +221,7 @@ function getScoreMessage(score) {
   } else {
     message = "You're on fire!";
   }
-  sessionStorage.setItem("scoreMessage", message);
+  
 
   return message;
 }
