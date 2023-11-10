@@ -22,7 +22,7 @@ bgm.loop = true;
 
 // INITIALIZE VARIABLES FOR GAME LOGIC
 let timeToNextRaven = 0;
-let ravenInterval = 800;
+let ravenInterval = 950;
 let lastTime = 0;
 let score = 0;
 let gameOver = false;
