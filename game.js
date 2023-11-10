@@ -1,9 +1,12 @@
+// INITIALIZE CANVAS AND CONTEXT
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 
+// INITIALIZE COLLISION CANVAS AND CONTEXT
 const collisionCanvas = document.getElementById("collisionCanvas");
 const collisionCtx = collisionCanvas.getContext("2d");
 
+// SET CANVAS DIMENSIONS AND PLAY BACKGROUND MUSIC ON PAGE LOAD
 window.onload = function () {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -12,10 +15,12 @@ window.onload = function () {
   bgm.play();
 };
 
+// INITIALIZE BACKGROUND MUSIC AND SET LOOP
 const bgm = new Audio("assets/dancehall-124368.mp3");
 bgm.play();
 bgm.loop = true;
 
+// INITIALIZE VARIABLES FOR GAME LOGIC
 let timeToNextRaven = 0;
 let ravenInterval = 800;
 let lastTime = 0;
@@ -23,15 +28,17 @@ let score = 0;
 let gameOver = false;
 let lives = 5;
 
+// ARRAY TO STORE RAVEN OBJECTS
 let ravens = [];
 
+// RAVEN CLASS DEFINITION
 class Raven {
   constructor() {
     this.spriteWidth = 271;
     this.spriteHeight = 194;
     this.sizeModifier = Math.random() * 0.6 + 0.4;
     this.width = this.spriteWidth * this.sizeModifier;
-    this.height = this.spriteHeight * this.sizeModifier;
+    this.height = this.spriteHeight * this.sizeModifier; //Raven class properties and methods
     this.x = canvas.width;
     this.y = Math.random() * (canvas.height - this.height);
     this.directionX = Math.random() * 5 + 3;
@@ -63,7 +70,7 @@ class Raven {
     if (this.y < 0 || this.y > canvas.height) {
       this.directionY = this.directionY * -1;
     }
-    this.x -= this.directionX;
+    this.x -= this.directionX; //Update logic for Raven objects
     this.y -= this.directionY;
     if (this.x < 0 - this.width) this.markedForDeletion = true;
     this.timeSinceFlap += deltatime;
@@ -88,7 +95,7 @@ class Raven {
 
   draw() {
     collisionCtx.fillStyle = this.color;
-    collisionCtx.fillRect(this.x, this.y, this.width, this.height);
+    collisionCtx.fillRect(this.x, this.y, this.width, this.height); //Draw logic for Raven objects
     ctx.drawImage(
       this.image,
       this.frame * this.spriteWidth,
@@ -102,9 +109,9 @@ class Raven {
     );
   }
 }
-
+// ARRAY TO STORE EXPLOSION OBJECTS
 let explosions = [];
-
+// EXPLOSION CLASS DEFINITION
 class Explosion {
   constructor(x, y, size) {
     this.image = new Image();
@@ -113,7 +120,7 @@ class Explosion {
     this.spriteHeight = 179;
     this.x = x;
     this.y = y;
-    this.size = size;
+    this.size = size; //Explosion class properties and methods
     this.frame = 0;
     this.sound = new Audio();
     this.sound.src = "assets/gunshot.mp3";
@@ -126,6 +133,7 @@ class Explosion {
     if (this.frame === 0) this.sound.play();
     this.timeSinceLastFrame += deltatime;
     if (this.timeSinceLastFrame > this.frameInterval) {
+      //Update logic for Explosion objects
       this.frame++;
       this.timeSinceLastFrame = 0;
       if (this.frame > 5) this.markedForDeletion = true;
@@ -135,7 +143,7 @@ class Explosion {
   draw() {
     ctx.drawImage(
       this.image,
-      this.frame * this.spriteWidth,
+      this.frame * this.spriteWidth, //Draw logic for Explosion objects
       0,
       this.spriteWidth,
       this.spriteHeight,
@@ -146,13 +154,13 @@ class Explosion {
     );
   }
 }
-
+// ARRAY TO STORE PARTICLE OBJECTS
 let particles = [];
-
+// PARTICLE CLASS DEFINITION
 class Particle {
   constructor(x, y, size, color) {
     this.size = size;
-    this.x = x + this.size * 0.5 + Math.random() * 50 - 25;
+    this.x = x + this.size * 0.5 + Math.random() * 50 - 25; //Particle class properties and methods
     this.y = y + this.size * 0.3;
     this.radius = (Math.random() * this.size) / 10;
     this.maxRadius = Math.random() * 20 + 35;
@@ -164,32 +172,33 @@ class Particle {
   update() {
     this.speedX += this.speedX;
     this.radius += 0.8;
-    if (this.radius > this.maxRadius - 5) this.markedForDeletion = true;
+    if (this.radius > this.maxRadius - 5) this.markedForDeletion = true; //Update logic for Particle objects
   }
 
   draw() {
     ctx.save();
     ctx.globalAlpha = 1 - this.radius / this.maxRadius;
-    ctx.beginPath();
+    ctx.beginPath(); //Draw logic for Particle objects
     ctx.fillStyle = this.color;
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
   }
 }
+// FUNCTION TO DRAW SCORE ON CANVAS
 
 function drawScore() {
   ctx.fillStyle = "black";
-  ctx.font = "50px Concert One";
+  ctx.font = "50px Concert One"; //Draw score on canvas logic
   ctx.fillText("Score: " + score, 50, 75);
 }
-
+// FUNCTION TO DRAW LIVES ON CANVAS
 function drawLives() {
   ctx.fillStyle = "black";
-  ctx.font = "50px Concert One";
+  ctx.font = "50px Concert One"; //Draw lives on canvas logic
   ctx.fillText("Lives: " + lives, 1240, 75);
 }
-
+// EVENT LISTENER FOR MOUSE CLICK
 window.addEventListener("click", function (e) {
   const detectPixelColor = collisionCtx.getImageData(e.x, e.y, 1, 1);
   const pc = detectPixelColor.data;
@@ -208,10 +217,9 @@ window.addEventListener("click", function (e) {
     }
   });
 });
-
+// FUNCTION TO GET SCORE MESSAGE BASED ON SCORE
 function getScoreMessage(score) {
   let message;
-  sessionStorage.setItem("scoreMessage", message);
   if (score >= 0 && score <= 10) {
     message = "Nice start!";
   } else if (score > 10 && score <= 20) {
@@ -221,11 +229,12 @@ function getScoreMessage(score) {
   } else {
     message = "You're on fire!";
   }
-  
+
+  sessionStorage.setItem("scoreMessage", message);
 
   return message;
 }
-
+// MAIN ANIMATION FUNCTION
 function animate(timestamp) {
   if (!gameOver) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -271,8 +280,9 @@ function animate(timestamp) {
   }
 }
 
+// FUNCTION TO STOP THE GAME
 function stopGame() {
   gameOver = true;
 }
-
+// INITIALIZE ANIMATION WITH A TIMESTAMP OF 0
 animate(0);
